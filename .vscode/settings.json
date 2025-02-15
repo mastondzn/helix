@@ -1,0 +1,43 @@
+{
+    // format on save
+    "editor.formatOnSave": true,
+
+    // we use prettier for our formatter but you can try something else!
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.prettierPath": "./node_modules/prettier",
+    "prettier.enable": true,
+
+    "editor.codeActionsOnSave": {
+        // attempt to fix auto-fixable problems when saving
+        "source.fixAll.eslint": "explicit",
+        // do not organize imports on save, it is handled by eslint
+        "source.organizeImports": "never"
+    },
+    "eslint.runtime": "node",
+
+    // Enable eslint for all supported languages
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "html",
+        "markdown",
+        "json",
+        "jsonc",
+        "yaml",
+        "github-actions-workflow",
+        "toml",
+        "xml",
+        "gql",
+        "graphql",
+        "astro",
+        "svelte",
+        "css",
+        "less",
+        "scss",
+        "pcss",
+        "postcss"
+    ]
+}

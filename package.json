@@ -1,0 +1,26 @@
+{
+    "name": "@mastondzn/helix",
+    "type": "module",
+    "module": "index.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint .",
+        "test": "vitest",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "generate": "openapi-typescript https://twitch-api-swagger.surge.sh/openapi.json -o src/helix.generated.ts"
+    },
+    "dependencies": {
+        "type-fest": "^4.34.1"
+    },
+    "devDependencies": {
+        "@mastondzn/eslint": "^1.1.1",
+        "@types/node": "^22",
+        "eslint": "^9.20.1",
+        "openapi-fetch": "^0.13.4",
+        "openapi-typescript": "^7.6.1",
+        "prettier": "^3.5.0",
+        "typescript": "^5.0.0",
+        "vitest": "^3.0.5"
+    }
+}
