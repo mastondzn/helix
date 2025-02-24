@@ -13,6 +13,8 @@ export default defineConfig({
     plugins: [
         typescript({
             exclude: ['./tests/**'],
+            declaration: true,
+            emitDeclarationOnly: true,
         }),
     ],
 });

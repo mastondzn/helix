@@ -60,7 +60,7 @@ const response = await helix.channelPoints.customRewards
 
 Most endpoints should be available, like they appear on the [Twitch API Reference](https://dev.twitch.tv/docs/api/reference).
 For example, if you need to use the [Get Global Chat Badges endpoint](https://dev.twitch.tv/docs/api/reference/#get-global-chat-badges), you can access it via `helix.chat.badges.global.get()`.
-The url gets built as you access keys on the [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+The url gets built as you access keys on the [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 This allows for the package's js bundle to be pretty low, while still providing strong type hints.
 
 ## Acknowledgements

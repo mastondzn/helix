@@ -38,6 +38,7 @@
         "lint": "eslint .",
         "release": "bumpp",
         "test": "vitest",
+        "typecheck": "tsc",
         "format": "prettier --write . !pnpm-lock.yaml",
         "format:check": "prettier --check . !pnpm-lock.yaml",
         "generate": "openapi-typescript https://github.com/DmitryScaletta/twitch-api-swagger/raw/main/openapi.json -o src/helix.generated.ts --immutable"

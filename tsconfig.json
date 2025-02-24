@@ -9,8 +9,6 @@
         "strict": true,
         "noImplicitOverride": true,
         "noUncheckedIndexedAccess": true,
-        "declaration": true,
-        "emitDeclarationOnly": true,
         "noEmit": true,
         "outDir": "dist",
         "esModuleInterop": true,
