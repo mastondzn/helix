@@ -1,4 +1,4 @@
-# @mastondzn/helix
+# @mastondzn/helix [![npm](https://img.shields.io/npm/v/@mastondzn/helix)](https://www.npmjs.com/package/@mastondzn/helix) [![pkg-size](https://pkg-size.dev/badge/bundle/1689)](https://pkg-size.dev/@mastondzn/helix)
 
 Tiny Twitch Helix API wrapper based on fetch.
 
