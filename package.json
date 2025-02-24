@@ -1,7 +1,7 @@
 {
     "name": "@mastondzn/helix",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "packageManager": "pnpm@9.14.2",
     "description": "Tiny Twitch Helix API wrapper based on fetch",
     "author": "Maston (https://github.com/mastondzn)",
