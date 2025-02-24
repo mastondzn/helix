@@ -1,25 +1,61 @@
 {
     "name": "@mastondzn/helix",
     "type": "module",
+    "version": "0.0.1",
+    "packageManager": "pnpm@9.14.2",
+    "description": "Tiny Twitch Helix API wrapper based on fetch",
+    "author": "Maston (https://github.com/mastondzn)",
+    "license": "MIT",
+    "homepage": "https://github.com/mastondzn/helix#readme",
+    "repository": "https://github.com/mastondzn/helix",
+    "bugs": {
+        "url": "https://github.com/mastondzn/dank-twitch-irc/issues"
+    },
+    "keywords": [
+        "twitch",
+        "api",
+        "helix"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "main": "dist/index.js",
     "module": "index.ts",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "scripts": {
-        "build": "tsc",
+        "build": "rimraf dist && pnpm generate && rollup -c",
         "lint": "eslint .",
+        "release": "bumpp",
         "test": "vitest",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "generate": "openapi-typescript https://twitch-api-swagger.surge.sh/openapi.json -o src/helix.generated.ts"
+        "generate": "openapi-typescript https://github.com/DmitryScaletta/twitch-api-swagger/raw/main/openapi.json -o src/helix.generated.ts --immutable"
     },
     "dependencies": {
         "type-fest": "^4.34.1"
     },
     "devDependencies": {
         "@mastondzn/eslint": "^1.1.1",
+        "@rollup/plugin-typescript": "^12.1.2",
         "@types/node": "^22",
+        "bumpp": "^10.0.3",
         "eslint": "^9.20.1",
         "openapi-fetch": "^0.13.4",
-        "openapi-typescript": "^7.6.1",
+        "openapi-typescript": "^7",
         "prettier": "^3.5.0",
+        "rimraf": "^6.0.1",
+        "rollup": "^4.34.8",
         "typescript": "^5.0.0",
         "vitest": "^3.0.5"
     }

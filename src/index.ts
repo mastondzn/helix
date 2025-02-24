@@ -127,3 +127,8 @@ export function createHelixClient<
         });
     }) as Helix<TCamelCasePath, TThrowHttpErrors>;
 }
+
+export * from './types';
+export * from './http-error';
+export * from './helix.generated';
+export * from './status';

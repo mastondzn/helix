@@ -1,4 +1,10 @@
-import type { CamelCase, Simplify, SimplifyDeep, UnionToIntersection } from 'type-fest';
+import type {
+    CamelCase,
+    RequiredKeysOf,
+    Simplify,
+    SimplifyDeep,
+    UnionToIntersection,
+} from 'type-fest';
 
 import type { operations, paths } from './helix.generated';
 import type {
@@ -75,15 +81,15 @@ export interface TypedResponse<TStatusCode extends number, TBodyShape = null>
           : boolean;
     status: TStatusCode;
     clone: () => this;
-    json: TStatusCode extends ContentlessStatusCode ? () => never : () => Promise<TBodyShape>;
+    json: () => TStatusCode extends ContentlessStatusCode ? Promise<never> : Promise<TBodyShape>;
 }
 
-type ToImmediatelyIndexedMapped<T> = T extends Record<infer K, unknown> ? T[K] : never;
+type Indexed<T> = T extends Record<infer K, unknown> ? T[K] : never;
 
 type CreateResponses<
     TResponses extends operations[keyof operations]['responses'],
     TThrowHttpErrors extends boolean,
-> = ToImmediatelyIndexedMapped<{
+> = Indexed<{
     [K in keyof TResponses as TThrowHttpErrors extends true
         ? K extends ErrorStatusCode
             ? never
@@ -91,21 +97,26 @@ type CreateResponses<
         : K]: TResponses[K] extends {
         content: { 'application/json': infer BodyShape };
     }
-        ? TypedResponse<KeyToNumber<K>, BodyShape>
+        ? TypedResponse<KeyToNumber<K>, SimplifyDeep<BodyShape>> // simplifying deep might be a bad idea
         : TypedResponse<KeyToNumber<K>>;
 }>;
+
+// idk what to name these anymore
+type ToFlexibleArgs<T extends object> = RequiredKeysOf<T> extends never ? [T] | [] : [T];
 
 type CreateFunctionSignatureForOperation<
     TOperation extends operations[keyof operations],
     TThrowHttpErrors extends boolean,
 > = (
-    options: OperationToBody<TOperation> &
-        OperationToQuery<TOperation> &
-        Omit<RequestInit, 'body' | 'method'>,
+    ...args: ToFlexibleArgs<
+        OperationToBody<TOperation> &
+            OperationToQuery<TOperation> &
+            Omit<RequestInit, 'body' | 'method'>
+    >
 ) => Promise<CreateResponses<TOperation['responses'], TThrowHttpErrors>>;
 
 export type Helix<TCamelCasePath extends boolean, TThrowHttpErrors extends boolean> = Simplify<
     UnionToIntersection<
-        { [K in keyof paths]: PathToChain<K, TCamelCasePath, TThrowHttpErrors> }[keyof paths]
+        Indexed<{ [K in keyof paths]: PathToChain<K, TCamelCasePath, TThrowHttpErrors> }>
     >
 >;

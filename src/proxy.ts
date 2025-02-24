@@ -21,11 +21,8 @@ export function createRecursiveProxy(
             if (typeof key !== 'string' || key === 'then') return;
             return createRecursiveProxy(callback, [...path, key]);
         },
-        apply(_1, _2, args) {
-            return callback({
-                path,
-                args: args as CallbackOptions['args'],
-            });
+        apply(_1, _2, args: CallbackOptions['args']) {
+            return callback({ path, args });
         },
     });
 }

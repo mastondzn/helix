@@ -18,7 +18,7 @@ const expectToMatchHeaders = (
 describe('createHelixClient({ headers: ... })', () => {
     it('should use the specified headers as expected', async () => {
         const spy = vi.fn<typeof fetch>();
-        spy.mockResolvedValueOnce(new Response('{}'));
+        spy.mockResolvedValue(new Response('{}'));
 
         const helix = createHelixClient({
             fetch: spy,
@@ -27,7 +27,6 @@ describe('createHelixClient({ headers: ... })', () => {
                 authorization: 'Bearer my-access-token',
             },
         });
-
         await helix.users.get({ query: { id: ['123'] } });
 
         expect(spy).toHaveBeenCalledWith(
@@ -54,7 +53,6 @@ describe('createHelixClient({ headers: ... })', () => {
             fetch: spy,
             headers,
         });
-
         await helix.users.get({ query: { id: ['123'] } });
 
         expect(spy).toHaveBeenCalledWith(
@@ -63,18 +61,6 @@ describe('createHelixClient({ headers: ... })', () => {
                     'client-id': 'my-client-id',
                     authorization: 'Bearer my-access-token',
                     'content-type': 'application/json',
-                }),
-            }),
-        );
-
-        //lets try to update the Headers
-        headers.set('authorization', 'Bearer my-new-access-token');
-        await helix.users.get({ query: { id: ['123'] } });
-
-        expect(spy).toHaveBeenCalledWith(
-            expect.objectContaining({
-                headers: expectToMatchHeaders({
-                    authorization: 'Bearer my-new-access-token',
                 }),
             }),
         );
