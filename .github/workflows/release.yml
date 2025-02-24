@@ -47,7 +47,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Create release
-              run: pnpm publish
+              run: pnpm publish --no-git-checks
 
             - run: pnpx changelogithub
               env:
