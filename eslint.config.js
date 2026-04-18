@@ -7,6 +7,8 @@ export default maston(
             projectService: true,
             tsconfigRootDir: import.meta.dirname,
         },
+
+        ignores: ['src/helix.generated.ts'],
     },
     {
         rules: { 'ts/no-empty-object-type': 'off' },

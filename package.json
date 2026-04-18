@@ -38,8 +38,8 @@
         "release": "bumpp",
         "test": "vitest",
         "typecheck": "tsc",
-        "format": "prettier --write . !pnpm-lock.yaml",
-        "format:check": "prettier --check . !pnpm-lock.yaml",
+        "format": "prettier --write . !pnpm-lock.yaml !src/helix.generated.ts",
+        "format:check": "prettier --check . !pnpm-lock.yaml !src/helix.generated.ts",
         "generate": "openapi-typescript https://github.com/DmitryScaletta/twitch-api-swagger/raw/main/openapi.json -o src/helix.generated.ts"
     },
     "dependencies": {
