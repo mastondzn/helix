@@ -35,7 +35,7 @@ export interface ClientOptions<
      * If you use a Headers instance, you should be able to use that same reference to refresh tokens!
      * Has 'content-type': 'application/json' unless it is specified.
      */
-    headers?: Headers | Record<string, string | string[]>;
+    headers?: Headers | Record<string, string>;
 }
 
 export function createHelixClient<
