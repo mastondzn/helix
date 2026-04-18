@@ -29,9 +29,6 @@ jobs:
             - name: Install deps
               run: pnpm install
 
-            - name: Generate from schema
-              run: pnpm generate
-
             - name: Check format
               run: pnpm format:check
 

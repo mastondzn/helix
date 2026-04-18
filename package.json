@@ -33,7 +33,7 @@
         "provenance": true
     },
     "scripts": {
-        "build": "rimraf dist && pnpm generate && tsdown ./src/index.ts --out ./dist --unbundle",
+        "build": "tsdown ./src/index.ts --out ./dist --unbundle",
         "lint": "eslint .",
         "release": "bumpp",
         "test": "vitest",
