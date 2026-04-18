@@ -2,7 +2,7 @@
     "name": "@mastondzn/helix",
     "type": "module",
     "version": "0.0.2",
-    "packageManager": "pnpm@9.14.2",
+    "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
     "description": "Tiny Twitch Helix API wrapper based on fetch",
     "author": "Maston (https://github.com/mastondzn)",
     "license": "MIT",
@@ -18,14 +18,13 @@
     ],
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs",
+            "default": "./dist/index.mjs"
         }
     },
-    "main": "dist/index.js",
-    "module": "index.ts",
-    "types": "dist/index.d.ts",
+    "main": "dist/index.mjs",
+    "types": "dist/index.d.mts",
     "files": [
         "dist"
     ],
@@ -34,7 +33,7 @@
         "provenance": true
     },
     "scripts": {
-        "build": "rimraf dist && pnpm generate && rollup -c",
+        "build": "rimraf dist && pnpm generate && tsdown ./src/index.ts --out ./dist --unbundle",
         "lint": "eslint .",
         "release": "bumpp",
         "test": "vitest",
@@ -44,20 +43,19 @@
         "generate": "openapi-typescript https://github.com/DmitryScaletta/twitch-api-swagger/raw/main/openapi.json -o src/helix.generated.ts"
     },
     "dependencies": {
-        "type-fest": "^4.34.1"
+        "type-fest": "^5.6.0"
     },
     "devDependencies": {
-        "@mastondzn/eslint": "^1.1.1",
-        "@rollup/plugin-typescript": "^12.1.2",
-        "@types/node": "^22",
-        "bumpp": "^10.0.3",
-        "eslint": "^9.20.1",
-        "openapi-fetch": "^0.13.4",
+        "@mastondzn/eslint": "^1.9.2",
+        "@types/node": "^24",
+        "bumpp": "^11",
+        "eslint": "^10",
         "openapi-typescript": "^7",
         "prettier": "^3.5.0",
         "rimraf": "^6.0.1",
-        "rollup": "^4.34.8",
-        "typescript": "^5.0.0",
-        "vitest": "^3.0.5"
+        "tsdown": "^0.21.9",
+        "typescript": "^6",
+        "vite": "^8.0.8",
+        "vitest": "^4"
     }
 }
